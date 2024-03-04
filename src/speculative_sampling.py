@@ -1,7 +1,7 @@
 import torch
 
 from src.kvcache_model import KVCacheModel
-from src.utils import norm_logits, sample, max_fn
+from src.utils import sample, max_fn
 from src.globals import Decoder
 
 # reference: https://github.com/feifeibear/LLMSpeculativeSampling

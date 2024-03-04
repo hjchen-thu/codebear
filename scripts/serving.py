@@ -1,32 +1,21 @@
 from flask import Flask, request, jsonify
-import numpy as np
 from transformers import AutoTokenizer
 import torch
 import logging
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src import speculative_sampling
-
-from src import LlamaGPTQ
-
-
+from src import speculative_sampling, LlamaGPTQ
 
 app = Flask(__name__)
-pipeline = None
-
 GLOBAL_SERVER = None
 
-
 class Server:
-    def __init__(self, approx_model_name, target_model_name, tokenizer_model_name) -> None:
-        self._device = 'cuda'
-        
-        logging.info("begin load models")
-        self._small_model = LlamaGPTQ.from_quantized(approx_model_name, device="cuda:0")
-        self._large_model = LlamaGPTQ.from_quantized(target_model_name, device="cuda:0")
-        self._tokenizer = AutoTokenizer.from_pretrained(tokenizer_model_name)
-        logging.info("fininsh load models")
+    def __init__(self, small_model, large_model, tokenizer_model) -> None:
+        self._device = "cuda:0"
+        self._small_model = LlamaGPTQ.from_quantized(small_model, device="cuda:0", use_triton=True, warmup_triton=True)
+        self._large_model = LlamaGPTQ.from_quantized(large_model, device="cuda:0", use_triton=True, warmup_triton=True)
+        self._tokenizer = AutoTokenizer.from_pretrained(tokenizer_model)
            
         self.num_tokens = 40
         self.top_k = 10
@@ -62,9 +51,9 @@ def predict():
 
 if __name__ == '__main__':
     GLOBAL_SERVER = Server(
-        approx_model_name="/home/chenhj/CodeLlama-7b-4bit",
-        target_model_name="/home/chenhj/CodeLlama-7b-4bit",
-        tokenizer_model_name="/home/chenhj/CodeLlama-7b-Python-hf"
+        small_model="/home/chenhj/CodeLlama-7b-4bit",
+        large_model="/home/chenhj/CodeLlama-7b-4bit",
+        tokenizer_model="/home/chenhj/CodeLlama-7b-Python-hf"
         )
     # Start the Flask service
     app.run(host='0.0.0.0', port=5000)
