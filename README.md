@@ -1,7 +1,7 @@
 # Codebear
 This repository combines **GPTQ 4-bit quantization** and **Speculative Decoding** to accelerate Large Language Models' (LLM) inference for code completion tasks in **personal usage scenarios** (where GPU resources are limited yet there's a pursuit for better performance and faster speed with larger models).
 
-GPTQ is a one-shot weight quantization method based on approximate second-order information, that is both highly-accurate and highly efficient. And Speculative Decoding is a innovative sampling strategy by using a small approximation model to propose sequences of tokens that will later be checked by a larger model. 
+[GPTQ](https://arxiv.org/abs/2210.17323) is a one-shot weight quantization method based on approximate second-order information, that is both highly-accurate and highly efficient. And [Speculative Decoding](https://arxiv.org/abs/2302.01318) is a innovative sampling strategy by using a small approximation model to propose sequences of tokens that will later be checked by a larger model. 
 
 By combining these two techniques, one can even deploy multiple LLMs in a single GPU with limited HBM memory usage. While benefiting from the improved performance brought by larger models, it also helps to accelerate inference speed to some extent.
 
@@ -35,7 +35,7 @@ transformers==4.37.2
 ```
 
 ### Step1: Quantize
-Download the float model from official([CodeLlama-7B](https://huggingface.co/codellama/) and [CodeLlama-34B](https://huggingface.co/codellama/CodeLlama-34b-Python-hf))
+Download the float model from official([CodeLlama-7B](https://huggingface.co/codellama/) and [CodeLlama-34B](https://huggingface.co/codellama/CodeLlama-34b-Python-hf)), then quantize them.
 ```bash
 #quntize the 7b model
 ./make_quant.sh -f /PATH/TO/7B/FLOAT/MODEL -q /PATH/TO/7B/QUANT/MODEL
