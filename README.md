@@ -32,4 +32,21 @@ The flowing figures are tested in a single V100(32GB) by deploying [CodeLlama-34
 ## Future Plans
 
 ## References
+```
+@article{frantar-gptq,
+  title={{GPTQ}: Accurate Post-training Compression for Generative Pretrained Transformers}, 
+  author={Elias Frantar and Saleh Ashkboos and Torsten Hoefler and Dan Alistarh},
+  year={2022},
+  journal={arXiv preprint arXiv:2210.17323}
+}
 
+@inproceedings{leviathan2023fast,
+  title={Fast inference from transformers via speculative decoding},
+  author={Leviathan, Yaniv and Kalman, Matan and Matias, Yossi},
+  booktitle={International Conference on Machine Learning},
+  pages={19274--19286},
+  year={2023},
+  organization={PMLR}
+}
+
+```
