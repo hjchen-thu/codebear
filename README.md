@@ -19,7 +19,10 @@ The flowing figures are tested in a single V100(32GB) by deploying [CodeLlama-34
 ![alt text](images/result.png)
 
 
-<!-- # Update  -->
+## Update
+|        | content |
+|  :----:  | :----:  |
+| 2024-03-10| fused mlp triton kernel| 
 
 ## Acknowledgement
 
