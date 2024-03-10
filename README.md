@@ -23,8 +23,9 @@ The flowing figures are tested in a single V100(32GB) by deploying CodeLlama-34B
 
 ## Acknowledgement
 
-Special thanks Elias Frantar, Saleh Ashkboos, Torsten Hoefler and Dan Alistarh for proposing GPTQ algorithm and open source the code, and for releasing Marlin kernel for mixed precision computation.
-Special thanks to ![feifeibear](https://github.com/feifeibear) for releasing the implemention of both  Google's and Deepmind's version.
+
+- Special thanks to [feifeibear](https://github.com/feifeibear) for releasing the implemention of speculative decoding with both Google's and Deepmind's versions([LLMSpeculativeSampling](https://github.com/feifeibear/LLMSpeculativeSampling)).
+- Special thanks to [AutoGPTQ team](https://github.com/AutoGPTQ/) for implementing GPTQ algorithm and open source the code.
 
 ## Quick Tour
 
