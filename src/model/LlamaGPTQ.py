@@ -400,7 +400,7 @@ class LlamaGPTQ(nn.Module, PushToHubMixin):
             if inject_fused_mlp and cls.fused_mlp_module_type is not None:
                 cls.fused_mlp_module_type.warmup(model, seqlen=model.seqlen)
 
-
+        # import pdb; pdb.set_trace()
         return cls(
             model,
             True,

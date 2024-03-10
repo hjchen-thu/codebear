@@ -334,7 +334,8 @@ class FusedLlamaMLPForQuantizedModel(FusedBaseMLPModule):
         for name, m in model.named_modules():
             if not isinstance(m, LlamaMLP):
                 continue
-
+            
+            # import pdb;pdb.set_trace()
             mlp = cls(m.gate_proj, m.down_proj, m.up_proj)
 
             if "." in name:
