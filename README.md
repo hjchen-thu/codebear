@@ -5,15 +5,15 @@ GPTQ is a one-shot weight quantization method based on approximate second-order 
 
 By combining these two techniques, one can even deploy multiple LLMs in a single GPU with limited HBM memory usage. While benefiting from the improved performance brought by larger models, it also helps to accelerate inference speed to some extent.
 
-The flowing figures are tested in a single V100(32GB) by deploying CodeLlama-34B and CodeLlama-7B models, with triton-based QuantLinear backend.
+The flowing figures are tested in a single V100(32GB) by deploying [CodeLlama-34B](https://huggingface.co/codellama/CodeLlama-34b-Python-hf) and [CodeLlama-7B](https://huggingface.co/codellama/CodeLlama-7b-Python-hf) models, with triton-based QuantLinear backend.
 
 |        | 3 prefill + 200th decoding |
-|  ----  | ----  |
+|  :----:  | :----:  |
 | Memory Usage(GB)  | 27.7 | 
 
 
 | 3 prefill + 200th decoding| CodeLlama 7B(FP16) |CodeLlama 7B(4Bit) |CodeLlama 34B(4Bit) |Speculative 7B+34B(4Bit)|
-|  ----  | ----  |----  |----  |----  |
+|  :----:  | :----:  |:----:  |:----:  |:----:  |
 | Inference Speed(Tokens/sec)  | 14.3 | 34.1 | 7.9 | 9.4 | 
 
 ![alt text](images/result.png)
