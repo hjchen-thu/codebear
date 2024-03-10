@@ -23,13 +23,52 @@ The flowing figures are tested in a single V100(32GB) by deploying [CodeLlama-34
 
 ## Acknowledgement
 
-
 - Special thanks to [feifeibear](https://github.com/feifeibear) for releasing the implemention of speculative decoding with both Google's and Deepmind's versions([LLMSpeculativeSampling](https://github.com/feifeibear/LLMSpeculativeSampling)).
 - Special thanks to [AutoGPTQ team](https://github.com/AutoGPTQ/) for implementing GPTQ algorithm and open source the code.
 
 ## Quick Tour
+### Requirements
+```
+triton==2.1.0
+auto_gptq==0.7.0
+transformers==4.37.2
+```
+
+### Step1: Quantize
+Download the float model from official([CodeLlama-7B](https://huggingface.co/codellama/) and [CodeLlama-34B](https://huggingface.co/codellama/CodeLlama-34b-Python-hf))
+```bash
+#quntize the 7b model
+./make_quant.sh -f /PATH/TO/7B/FLOAT/MODEL -q /PATH/TO/7B/QUANT/MODEL
+#quntize the 34b model
+./make_quant.sh -f /PATH/TO/34B/FLOAT/MODEL -q /PATH/TO/34B/QUANT/MODEL
+```
+Or you can just download the 4bit quantized model from my Huggingface([CodeLlama-7B-4bit](https://huggingface.co/guaguabear/codebear-7b-4bit) and [CodeLlama-34B-4bit](https://huggingface.co/guaguabear/codebear-34b-4bit))
+
+The basic config of quantization is set to bits = 4, group_num = 128 (can be changed in ./scripts/quantize.py).
+
+### Step2: Serving
+Start serving
+```bash
+./start_server.sh -s /PATH/TO/7B/QUANT/MODEL -l /PATH/TO/34B/QUANT/MODEL -t /PATH/TO/7B/FLOAT/MODEL
+```
+Default sampling params are set to max_tokens = 200, top_k = 10, top_p = 0.9 (can be changed in ./scripts/serving.py).
+
+Send request
+```
+curl -X POST -H "Content-Type: application/json" -d '{"prompt": "def quicksort("}' http://127.0.0.1:5000/codebear
+```
+![alt text](images/request.png)
+
+
 
 ## Future Plans
+
+|        | Progress |
+|  :----:  | :----:  |
+| fused_flash_attn_MHA triton implemention| todo | 
+| fused_flash_attn_GQA triton implemention| todo |
+| INT8 KV cache| todo |
+
 
 ## References
 ```
