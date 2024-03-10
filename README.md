@@ -53,7 +53,7 @@ Start serving
 ```
 Default sampling params are set to max_tokens = 200, top_k = 10, top_p = 0.9 (can be changed in ./scripts/serving.py).
 
-Send request
+Send request (**the model is specially trained for code completion with python**)
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"prompt": "def quicksort("}' http://127.0.0.1:5000/codebear
 ```
