@@ -7,15 +7,16 @@ By combining these two techniques, one can even deploy multiple LLMs in a single
 
 The flowing figures are tested in a single V100(32GB) by deploying CodeLlama-34B and CodeLlama-7B models, with triton-based QuantLinear backend.
 
-|        | 10 prefill + 200th decoding |
+|        | 3 prefill + 200th decoding |
 |  ----  | ----  |
 | Memory Usage(GB)  | 27.7 | 
 
 
-| 10 prefill + 200th decoding| CodeLlama 7B(FP16) |CodeLlama 7B(4Bit) |CodeLlama 34B(4Bit) |Speculative 7B+34B(4Bit)|
+| 3 prefill + 200th decoding| CodeLlama 7B(FP16) |CodeLlama 7B(4Bit) |CodeLlama 34B(4Bit) |Speculative 7B+34B(4Bit)|
 |  ----  | ----  |----  |----  |----  |
-| Inference Speed(Tokens/sec)  | 14.3 | 34.1 | 7.9 | 10.2 | 
+| Inference Speed(Tokens/sec)  | 14.3 | 34.1 | 7.9 | 9.4 | 
 
+![alt text](images/result.png)
 
 
 <!-- # Update  -->
