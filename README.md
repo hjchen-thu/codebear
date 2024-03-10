@@ -21,10 +21,14 @@ The flowing figures are tested in a single V100(32GB) by deploying CodeLlama-34B
 
 <!-- # Update  -->
 
+## Acknowledgement
+
+Special thanks Elias Frantar, Saleh Ashkboos, Torsten Hoefler and Dan Alistarh for proposing GPTQ algorithm and open source the code, and for releasing Marlin kernel for mixed precision computation.
+Special thanks to ![feifeibear](https://github.com/feifeibear) for releasing the implemention of both  Google's and Deepmind's version.
+
 ## Quick Tour
 
 ## Future Plans
 
 ## References
 
-## Acknowledgement
