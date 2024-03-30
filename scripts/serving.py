@@ -27,7 +27,7 @@ class Server:
         
     def process_request(self, request : str) -> torch.Tensor:
         input_str = request['prompt']
-        logging.info(f"recieve request {input_str}")
+        logging.info(f"receive request {input_str}")
         input_ids = self._tokenizer.encode(input_str, return_tensors='pt').to(self._device)
         output = speculative_sampling(input_ids, 
                                       self._small_model, 
