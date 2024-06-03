@@ -14,6 +14,7 @@ from src import speculative_sampling, LlamaGPTQ
 app = Flask(__name__)
 GLOBAL_SERVER = None
 
+# refered: https://github.com/feifeibear/LLMSpeculativeSampling
 class Server:
     def __init__(self, small_model, large_model, tokenizer_model, max_tokens, top_k, top_p) -> None:
         self._device = "cuda:0"
