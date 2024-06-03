@@ -1,5 +1,6 @@
 import torch
 
+# reference: https://github.com/feifeibear/LLMSpeculativeSampling
 class Singleton(type):
     _instances = {}
 
